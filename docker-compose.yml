@@ -6,7 +6,18 @@ services:
     working_dir: /terraform
     volumes:
       - "./terraform/src:/terraform"
-    environment: 
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+  k8:
+    build: ./k8s
+    tty: true
+    working_dir: /k8s
+    privileged: true
+    volumes:
+      - "./k8s/src:/k8s"
+    environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
